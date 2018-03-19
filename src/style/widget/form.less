@@ -1,0 +1,76 @@
+@import '../fn.less';
+
+.form {
+  &-label {
+    width: @cellLabelWidth;
+    .textWrap();
+  }
+  &-input {
+    height: @cellHeightEm;
+    min-height: @cellHeightEm;
+    line-height: @cellHeightEm;
+  }
+  &-toptips {
+    //display: none; // 通过 wx:if 来控制
+    position: fixed;
+    transform: translateZ(0);
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 5000;
+    .textWrap();
+  }
+  &-toptips_warn {
+    background-color: @colorWarn;
+  }
+  &-textarea {
+    display: block;
+    width: 100%;
+  }
+  &-textarea-counter {
+    color: @textColorTips;
+    text-align: right;
+  }
+  &-textarea-counter_warn {
+    color: @textColorWarn;
+  }
+  &-select {
+    position: relative;
+    padding-left: @cellGapH;
+    padding-right: 30px;
+    height: @cellHeightEm;
+    min-height: @cellHeightEm;
+    line-height: @cellHeightEm;
+    border-right: 1rpx solid @cellBorderColor;
+    &:before {
+      content: ' ';
+      .setArrow(right, 6px, #C8C8CD, 2px);
+      position: absolute;
+      top: 50%;
+      right: @cellGapH;
+      margin-top: -4px;
+    }
+    &_after {
+      padding-left: 0;
+    }
+  }
+  &-vcode-img {
+    margin-left: 5px;
+    height: unit(@cellFontSize, em);
+    vertical-align: middle;
+  }
+  &-vcode-btn {
+    display: inline-block;
+    height: unit(@cellHeight / @cellFontSize, em);
+    margin-left: 5px;
+    padding: 0 0.6em 0 0.7em;
+    line-height: unit(@cellHeight / @cellFontSize, em);
+    vertical-align: middle;
+    font-size: @cellFontSize;
+    white-space: nowrap;
+  }
+}
