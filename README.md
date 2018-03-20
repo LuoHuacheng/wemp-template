@@ -1,2 +1,2 @@
-# wxapp-template
-wxapp template
+# wemp-template
+template for wemp-cli

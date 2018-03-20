@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const less = require('gulp-less');
+const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const rename = require('gulp-rename');
@@ -19,10 +19,9 @@ gulp.task('style', () => {
   gulp
     .src(
       [
-        'src/app.less',
-        'src/style/**/*.less',
-        'src/views/**/*.less',
-        'src/components/**/*.less',
+        'src/app.styl',
+        'src/views/**/*.styl',
+        'src/components/**/*.styl',
       ],
       { base: 'src' }
     )
@@ -31,7 +30,7 @@ gulp.task('style', () => {
         errorHandler: errorAlert,
       })
     )
-    .pipe(less())
+    .pipe(stylus())
     .pipe(
       postcss([
         autoprefixer({
@@ -125,5 +124,6 @@ function errorAlert(error) {
     title: 'Error running something',
     message: error.message,
   })(error);
-  this.emit('error', new Error('Something happend: Error message!'));
+  this.emit('error', new Error('Something happened: Error message!'));
+  return;
 }
