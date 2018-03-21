@@ -1,8 +1,10 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
+const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const clean = require('gulp-clean');
@@ -10,21 +12,14 @@ const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
 gulp.task('app', () => {
-  gulp
-    .src('src/app.json', { base: 'src' })
-    .pipe(gulp.dest('dist'));
+  gulp.src('src/app.json', { base: 'src' }).pipe(gulp.dest('dist'));
 });
 
 gulp.task('style', () => {
   gulp
-    .src(
-      [
-        'src/app.styl',
-        'src/views/**/*.styl',
-        'src/components/**/*.styl',
-      ],
-      { base: 'src' }
-    )
+    .src(['src/app.styl', 'src/views/**/*.styl', 'src/components/**/*.styl'], {
+      base: 'src',
+    })
     .pipe(
       plumber({
         errorHandler: errorAlert,
@@ -39,6 +34,13 @@ gulp.task('style', () => {
           remove: true,
         }),
       ])
+    )
+    .pipe(
+      cssnano({
+        zindex: false,
+        autoprefixer: false,
+        discardComments: { removeAll: true },
+      })
     )
     .pipe(
       rename(path => {
@@ -71,6 +73,7 @@ gulp.task('script', () => {
         presets: ['@babel/env'],
       })
     )
+    .pipe(uglify())
     .pipe(gulp.dest('dist'));
 });
 
