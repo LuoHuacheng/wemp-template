@@ -105,7 +105,7 @@ gulp.task('image', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', () => {
+gulp.task('dev', () => {
   gulp.watch('src/**', ['app', 'style', 'script', 'html', 'image']);
 });
 
