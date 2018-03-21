@@ -1,3 +1,5 @@
+const HttpService = require('./utils/http');
+
 App({
   onLaunch: function() {
     console.log('App Launch');
@@ -8,7 +10,5 @@ App({
   onHide: function() {
     console.log('App Hide');
   },
-  globalData: {
-    hasLogin: false,
-  },
+  $http: new HttpService(),
 });
