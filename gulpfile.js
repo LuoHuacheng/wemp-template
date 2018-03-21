@@ -4,6 +4,7 @@ const uglify = require('gulp-uglify');
 const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
+const px2rpx = require('postcss-pxtorpx');
 const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
@@ -32,6 +33,10 @@ gulp.task('style', () => {
           browsers: ['Android >= 4.0', 'iOS >= 7.0'],
           cascade: true,
           remove: true,
+        }),
+        px2rpx({
+          multiplier: 2,
+          propList: ['*', '!font*'],
         }),
       ])
     )
