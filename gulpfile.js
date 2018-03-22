@@ -12,8 +12,12 @@ const clean = require('gulp-clean');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
-gulp.task('app', () => {
-  gulp.src('src/app.json', { base: 'src' }).pipe(gulp.dest('dist'));
+gulp.task('json', () => {
+  gulp
+    .src(['src/app.json', 'src/views/**/*.json', 'src/components/**/*.json'], {
+      base: 'src',
+    })
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('style', () => {
@@ -111,7 +115,7 @@ gulp.task('image', () => {
 });
 
 gulp.task('dev', () => {
-  gulp.watch('src/**', ['app', 'style', 'script', 'html', 'image']);
+  gulp.watch('src/**', ['json', 'style', 'script', 'html', 'image']);
 });
 
 gulp.task('clean', () => {
