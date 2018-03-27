@@ -136,6 +136,4 @@ function errorAlert(error) {
     title: 'Error running something',
     message: error.message,
   })(error);
-  this.emit('error', new Error('Something happened: Error message!'));
-  return;
 }
