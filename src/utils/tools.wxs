@@ -1,0 +1,11 @@
+var convertStatus = function (status) {
+  switch (status) {
+    case 'SUCCEED':
+      return '交易成功';
+    default:
+      return '交易失败';
+  }
+}
+module.exports = {
+  convertStatus: convertStatus,
+};

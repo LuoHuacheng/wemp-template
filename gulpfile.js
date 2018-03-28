@@ -20,6 +20,14 @@ gulp.task('json', () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('wxs', () => {
+  gulp
+    .src(['src/utils/*.wxs'], {
+      base: 'src',
+    })
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('style', () => {
   gulp
     .src(['src/app.styl', 'src/views/**/*.styl', 'src/components/**/*.styl'], {
@@ -102,20 +110,8 @@ gulp.task('html', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('image', () => {
-  gulp
-    .src('src/images/**/*.{png, jpg, svg}', { base: 'src' })
-    .pipe(
-      plumber({
-        errorHandler: errorAlert,
-      })
-    )
-    .pipe(imagemin())
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('dev', () => {
-  gulp.watch('src/**', ['json', 'style', 'script', 'html', 'image']);
+gulp.task('dev', ['json', 'wxs', 'style', 'script', 'html'], () => {
+  gulp.watch('src/**', ['json', 'wxs', 'style', 'script', 'html']);
 });
 
 gulp.task('clean', () => {
