@@ -110,8 +110,22 @@ gulp.task('html', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('dev', ['json', 'wxs', 'style', 'script', 'html'], () => {
-  gulp.watch('src/**', ['json', 'wxs', 'style', 'script', 'html']);
+gulp.task('image', () => {
+  gulp
+    .src('src/images/*', { base: 'src' })
+    .pipe(
+      plumber({
+        errorHandler: errorAlert,
+      })
+    )
+    .pipe(
+      imagemin()
+    )
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('dev', ['json', 'wxs', 'style', 'script', 'html', 'image'], () => {
+  gulp.watch('src/**', ['json', 'wxs', 'style', 'script', 'html', 'image']);
 });
 
 gulp.task('clean', () => {
