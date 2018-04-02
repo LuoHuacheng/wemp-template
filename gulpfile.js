@@ -14,7 +14,7 @@ const notify = require('gulp-notify');
 
 gulp.task('json', () => {
   gulp
-    .src(['src/app.json', 'src/views/**/*.json', 'src/components/**/*.json'], {
+    .src(['src/project.config.json', 'src/app.json', 'src/views/**/*.json', 'src/components/**/*.json'], {
       base: 'src',
     })
     .pipe(gulp.dest('dist'));
